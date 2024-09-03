@@ -4,7 +4,7 @@
 
 def floor(n: float) -> int:
     """
-    Function that takes a float `n` as an argument and returns its floor value, 
+    Function that takes a float `n` as an argument and returns its floor value,
     which is the largest integer less than or equal to `n`.
     """
     return int(n)
