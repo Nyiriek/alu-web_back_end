@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Complex types - list of floats"""
-import typing
 from typing import list
 
 
