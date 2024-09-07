@@ -26,13 +26,12 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
         order (without using sort()).
     """
 
-    delays = []
-    
+    delays: List[float] = []
+    all_delays: List[float] = []
     for j in range(n):
-        delay = await wait_random(max_delay)
-        j = 0
-        while j < len(delays) and delays[j] < delay:
-            j += 1
-            delays.insert(j, delays)
-            
-    return delays
+        delays.append(wait_random(max_delay))
+    for delay in asyncio.as_completed(delays):
+        earliest_result = await delay
+        all_delays.append(earliest_result)
+    return all_delays
+
