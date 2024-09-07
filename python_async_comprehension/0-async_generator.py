@@ -4,11 +4,11 @@ The coroutine will loop 10 times, each
 time asynchronously wait 1 second, then yield arandom number between 0 and 10. Use the random module.
 """
 import asyncio
+from typing import Generator
 import random
-from typing import AsyncGenerator
 
 
-async def async_generator() -> AsyncGenerator[float, None]:
+async def async_generator() -> Generator[float, None, None]: 
     """
     Async Generator
 
