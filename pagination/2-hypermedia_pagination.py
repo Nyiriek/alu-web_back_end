@@ -42,24 +42,24 @@ class Server:
         return self.dataset()[start:end]
 
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
-        """get hyper
-
-        Args:
-            page (int, optional): current page. Defaults to 1.
-            page_size (int, optional):
-            Number of elements in page. Defaults to 10.
-
-        Returns:
-            Dict: Dictonary of pagination elements
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
+        """Get a dictionary with the following key-value pairs:
+        - page_size: the length of the returned dataset page
+        - page: the current page number
+        - data: the dataset page (equivalent to return from previous task)
+        - next_page: number of the next page, None if no next page
+        - prev_page: number of the previous page, None if no previous page
+        - total_pages: the total number of pages in the dataset as an integer
         """
+        data = self.get_page(page, page_size)
         total_pages = math.ceil(len(self.dataset()) / page_size)
-        new_dictionary = {
-            "page_size": page_size,
-            "page": page,
-            "data": self.get_page(page, page_size),
-            "next_page": page + 1 if page < total_pages else None,
-            "prev_page": page - 1 if page > 1 else None,
-            "total_pages": total_pages
+        next_page = page + 1 if page < total_pages else None
+        prev_page = page - 1 if page > 1 else None
+        return {
+            'page_size': len(data),
+            'page': page,
+            'data': data,
+            'next_page': next_page,
+            'prev_page': prev_page,
+            'total_pages': total_pages
         }
-        return new_dictionary
