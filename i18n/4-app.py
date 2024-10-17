@@ -1,20 +1,18 @@
 #!/usr/bin/env python3
-"""
-Route module for the API
-"""
+""" Basic Flask app """
 from flask import Flask, render_template, request
-from os import getenv
-from flask_babel import Babel
-
+from flask_babel import Babel, gettext as _
 
 app = Flask(__name__)
 
 
 class Config:
-    """ class config"""
-    LANGUAGES = ['en', 'fr']
-    BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
+    """
+    Config class
+    """
+    LANGUAGES = ["en", "fr"]
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
 app.config.from_object(Config)
@@ -34,11 +32,11 @@ def get_locale():
 
 @app.route('/')
 def index():
-    """hello world"""
-    return render_template("4-index.html", message="Welcome to Holberton")
+    """
+    _summary_
+    """
+    return render_template("0-index.html")
 
 
-if __name__ == "__main__":
-    host = getenv("API_HOST", "0.0.0.0")
-    port = getenv("API_PORT", "5000")
-    app.run(host=host, port=port)
+if __name__ == '__main__':
+    app.run(debug='True')
