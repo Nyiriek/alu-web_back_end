@@ -5,7 +5,6 @@ from flask_babel import Babel, gettext as _
 
 app = Flask(__name__)
 
-
 class Config:
     """
     Config class
@@ -14,14 +13,12 @@ class Config:
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
-
 app.config.from_object(Config)
 babel = Babel(app)
 
-
 @babel.localeselector
 def get_locale():
-    """best match locale lang"""
+    """Best match locale lang"""
     local_lang = request.args.get('locale')
     support_lang = app.config['LANGUAGES']
     if local_lang in support_lang:
@@ -29,14 +26,12 @@ def get_locale():
     else:
         return request.accept_languages.best_match(app.config['LANGUAGES'])
 
-
 @app.route('/')
 def index():
     """
-    _summary_
+    Index page
     """
     return render_template("0-index.html")
-
 
 if __name__ == '__main__':
     app.run(debug='True')
