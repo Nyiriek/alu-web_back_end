@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Basic Flask app """
 from flask import Flask, render_template, request
-from flask_babel import Babel
+from flask_babel import Babel, gettext as _
 
 app = Flask(__name__)
 
@@ -20,7 +20,6 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
-@babel.localeselector
 def get_locale():
     """
     _summary_
