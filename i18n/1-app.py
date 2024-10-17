@@ -25,7 +25,7 @@ def index():
     """
     _summary_
     """
-    return render_template("0-index.html", message="Welcome to Holberton")
+    return render_template("1-index.html", message="Welcome to Holberton")
 
 
 if __name__ == '__main__':
