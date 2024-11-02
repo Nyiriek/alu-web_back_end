@@ -4,4 +4,4 @@ export default function getSumOfHoods(
   expansion2019 = 19
 ) {
   return initialNumber + expansion1989 + expansion2019;
-}
+};
