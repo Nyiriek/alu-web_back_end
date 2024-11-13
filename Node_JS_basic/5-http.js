@@ -8,29 +8,27 @@ const DATABASE = args[0];
 const hostname = '127.0.0.1';
 const port = 1245;
 
-const app = http.createServer(async (request, response) => {
-  response.statusCode = 200;
-  response.setHeader('Content-Type', 'text/plain');
+const app = http.createServer(async (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
 
-  const { url } = request;
+  const { url } = req;
 
   if (url === '/') {
-    response.write('Hello Holberton School!');
+    res.write('Hello Holberton School!');
   } else if (url === '/students') {
-    response.write('This is the list of our students\n');
+    res.write('This is the list of our students\n');
     try {
       const students = await countStudents(DATABASE);
-      response.end(`${students.join('\n')}`);
+      res.end(`${students.join('\n')}`);
     } catch (error) {
-      response.end(error.message);
+      res.end(error.message);
     }
   }
-  response.statusCode = 404;
-  response.end();
+  res.statusCode = 404;
+  res.end();
 });
 
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(port, hostname);
 
 module.exports = app;
