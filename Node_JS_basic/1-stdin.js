@@ -1,4 +1,4 @@
-console.log('Welcome to Holberton, what is your name?');
+console.log('Welcome to Holberton School, what is your name?');
 
 process.stdin.on('data', (data) => {
   const name = data.toString().trim();
