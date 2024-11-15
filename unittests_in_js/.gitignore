@@ -1,2 +1,5 @@
 node_modules/
 .vscode/
+./8-api/package-lock.json
+./9-api/package-lock.json
+./10-api/package-lock.json
